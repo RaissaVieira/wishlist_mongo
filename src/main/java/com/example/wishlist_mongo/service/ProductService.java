@@ -2,7 +2,9 @@ package com.example.wishlist_mongo.service;
 
 import com.example.wishlist_mongo.document.Product;
 import com.example.wishlist_mongo.repository.ProductRepository;
+import com.example.wishlist_mongo.service.exception.CustomException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,19 +17,21 @@ public class ProductService {
     private ProductRepository productRepository;
 
     // Get All clients
-    public List<Product> findAllProduct() {
+    public List<Product> findAllProduct() throws CustomException {
         return productRepository.findAll();
     }
 
     //Register new product
-    public Product registerProduct(Product product) {
+    public Product registerProduct(Product product) throws CustomException{
         product.setId(UUID.randomUUID());
         return productRepository.save(product);
     }
 
     //Find client by CPF
-    public Optional<Product> findProductByName(String name) {
-        return productRepository.findProductByName(name);
+    public Product findProductByName(String name) {
+        return productRepository.findProductByName(name).orElseThrow(
+                () -> new CustomException("Product not found", HttpStatus.NOT_FOUND)
+        );
     }
 
     //Update exist client
@@ -39,7 +43,7 @@ public class ProductService {
             return productRepository.save(product);
         }
 
-        return null;
+        throw new CustomException("Product not found", HttpStatus.NOT_FOUND);
     }
 
     public String removeProduct(UUID id) {
@@ -47,9 +51,9 @@ public class ProductService {
 
         if(searchProduct.isPresent()){
             productRepository.deleteById(id);
-            return "Produto deletado com sucesso";
+            return "Produt successfully deleted";
         }
 
-        return "Produto não encontrado";
+        throw new CustomException("Product not found", HttpStatus.NOT_FOUND);
     }
 }

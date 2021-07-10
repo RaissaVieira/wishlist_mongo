@@ -2,7 +2,9 @@ package com.example.wishlist_mongo.service;
 
 import com.example.wishlist_mongo.document.Client;
 import com.example.wishlist_mongo.repository.ClientRepository;
+import com.example.wishlist_mongo.service.exception.CustomException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,12 +18,12 @@ public class ClientService {
     private ClientRepository clientRepository;
 
     // Get All clients
-    public List<Client> findAllClients() {
+    public List<Client> findAllClients() throws CustomException {
         return clientRepository.findAll();
     }
 
     //Register new client
-    public Client registerClient(Client client) {
+    public Client registerClient(Client client) throws CustomException {
         Optional<Client> searchClient = clientRepository.findClientByCpf(client.getCpf());
 
         if(searchClient.isEmpty()) {
@@ -29,16 +31,18 @@ public class ClientService {
             return clientRepository.save(client);
         }
 
-        return null;
+        throw new CustomException("CPF already registered", HttpStatus.BAD_REQUEST);
     }
 
     //Find client by CPF
-    public Optional<Client> findClientByCPF(String cpf) {
-        return clientRepository.findClientByCpf(cpf);
+    public Client findClientByCPF(String cpf) {
+        return clientRepository.findClientByCpf(cpf).orElseThrow(
+                () -> new CustomException("User not found", HttpStatus.NOT_FOUND)
+        );
     }
 
     //Update exist client
-    public Client updateClient(String cpf, Client client) {
+    public Client updateClient(String cpf, Client client) throws CustomException {
         Optional<Client> searchClient = clientRepository.findClientByCpf(cpf);
 
         if(searchClient.isPresent()){
@@ -46,7 +50,7 @@ public class ClientService {
             return clientRepository.save(client);
         }
 
-        return null;
+        throw new CustomException("User not found", HttpStatus.NOT_FOUND);
     }
 
     public String removeClient(String cpf) {
@@ -54,9 +58,9 @@ public class ClientService {
 
         if(searchClient.isPresent()){
             clientRepository.deleteClientByCpf(cpf);
-            return "Client deletado com sucesso";
+            return "Client successfully deleted";
         }
 
-        return "Client não encontrado";
+        throw new CustomException("User not found", HttpStatus.NOT_FOUND);
     }
 }
