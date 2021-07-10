@@ -1,0 +1,380 @@
+{
+	"info": {
+		"_postman_id": "a8ac27c5-977c-4d3e-b151-e097adc4a2f6",
+		"name": "Wishlist",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "Create new Product",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Mesa grande\",\n    \"price\": 75,\n    \"description\": \"Mesa de madeira\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/products",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Filtered product",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/products?name=Fac",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"products"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Fac"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List all products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/products/list",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"products",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualiza produto",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Cadeira preta\",\n    \"price\": 75,\n    \"description\": \"Cadeira de escritorio\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/products/854e6bc9-f43b-4f57-876a-2c10e34be960",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"products",
+								"854e6bc9-f43b-4f57-876a-2c10e34be960"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete product",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/products/854e6bc9-f43b-4f57-876a-2c10e34be960",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"products",
+								"854e6bc9-f43b-4f57-876a-2c10e34be960"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Client",
+			"item": [
+				{
+					"name": "Get All Clients",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Maria Girneide\",\n    \"cpf\": \"12547896324\",\n    \"birthday\": \"14/07/2001\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/clients",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"clients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get client by cpf",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/clients/25896314721",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"clients",
+								"25896314721"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create new Client",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Francisco Vieira\",\n    \"cpf\": \"78968412333\",\n    \"birthday\": \"01/07/2003\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/clients",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"clients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update new Client",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Maria Girneide da Silva\",\n    \"cpf\": \"12547896324\",\n    \"birthday\": \"14/07/2001\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/clients/25896314721",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"clients",
+								"25896314721"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete client",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/clients/12547896324",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"clients",
+								"12547896324"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "WishList",
+			"item": [
+				{
+					"name": "Add wish",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"clientCPF\": \"25896314721\",\n    \"productId\": \"06541788-53df-414b-a34e-01d9d4ef8880\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/wishlist",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"wishlist"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all wish by CPF",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/wishlist/25896314721",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"wishlist",
+								"25896314721"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete wish",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"clientCPF\": \"25896314721\",\n    \"productId\": \"18c317e8-4679-4b45-9007-fb7d46480ff9\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/wishlist",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"wishlist"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "search product on wishlist",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/wishlist/25896314721/search?name=Faca",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"wishlist",
+								"25896314721",
+								"search"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Faca"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
