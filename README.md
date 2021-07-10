@@ -55,6 +55,10 @@ Siga as instruções para executar a API.
    ```sh
    Postman / Insomnia 
    ```
+5. Acesse o swagger
+   ```sh
+   http://localhost:8080/swagger-ui.html#/ 
+   ```
 
 <!-- CONTACT -->
 ## Contatos
