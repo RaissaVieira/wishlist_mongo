@@ -11,5 +11,5 @@ public interface ClientRepository extends MongoRepository<Client, String> {
 
     Optional<Client> findClientByCpf(String cpf);
 
-    void deleteClientBy(String cpf);
+    void deleteClientByCpf(String cpf);
 }
